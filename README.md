@@ -25,7 +25,8 @@ Github Link to the Original Project (Starter Kit):
 https://github.com/dappuniversity/starter_kit_2
 
 Github Link to Final Project:
-https://github.com/harshbodgal/cpsc-559-01-nft
+https://github.com/harshbodgal/cpsc-559-01-nft/
+
 
 Features and Functionalities -
 
