@@ -5,13 +5,14 @@ import {
   Route,
   Routes
 } from "react-router-dom";
-import { BrowserRouter as Router} from 'react-router-dom';
+// import { BrowserRouter as Router} from 'react-router-dom';
 import { FadeLoader } from 'react-spinners'
 import Menu from './Menubar'
 import Frontpage from './Frontpage';
+import MyPurchases from './Purchases';
+import SportsNews from './News';
 import Sell from './Sell';
-import Items from './My-items.js';
-import Purchases from './Purchases';
+import MyListedItems from './My-items.js';
 import MarketplaceAbi from '../contractsData/Marketplace.json'
 import MarketplaceAddress from '../contractsData/Marketplace-address.json'
 import NFTAbi from '../contractsData/NFT.json'
@@ -53,13 +54,19 @@ function App() {
               </div>
           ) : (
           <Routes>                    
-            <Route path="/Frontpage" element={
+            <Route path="/" element={
               <Frontpage market={market} nft={nft} />
             } />
-            <Route path="/Sell" />
-            <Route path="/My-items" />
-            <Route path="/Purchases"/>         
-          </Routes>
+            {/* <Route path="/My-items" /> */}
+              <Route path="/purchases" element={
+                <MyPurchases  market={market} nft={nft} wallet={wallet} />} />
+              <Route path="/news" element={
+                <SportsNews/>} />
+              <Route path="/Sell" element={
+              <Sell market={market} nft={nft} />}/>
+              <Route path="/My-items" element={
+              <MyListedItems market={market} nft={nft} wallet={wallet}/>}/>
+            </Routes>
           )}
         </div>
       </div>

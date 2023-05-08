@@ -35,6 +35,11 @@ const Menu = ({ web3Handler, wallet}) => {
                             Purchases                      
                         </Button>
                     </Link>
+                    <Link to="/news" activeClassName="active">
+                        <Button>    
+                            Sports News                      
+                        </Button>
+                    </Link>
                 </nav>
                 <Nav>
                     {wallet ? (
