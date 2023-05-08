@@ -2,7 +2,8 @@ import './App.css';
 import React from 'react';
 import {
   BrowserRouter,
-  Route
+  Route,
+  Routes
 } from "react-router-dom";
 import { BrowserRouter as Router} from 'react-router-dom';
 import { FadeLoader } from 'react-spinners'
@@ -31,6 +32,7 @@ function App() {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const sign = provider.getSigner()
     load(sign)
+  
   }
 
   const load = async (sign) => {
@@ -50,14 +52,14 @@ function App() {
                 <p className='waiting'>Metamask Connecting...</p>
               </div>
           ) : (
-          <Router>                    
+          <Routes>                    
             <Route path="/Frontpage" element={
               <Frontpage market={market} nft={nft} />
             } />
             <Route path="/Sell" />
             <Route path="/My-items" />
             <Route path="/Purchases"/>         
-          </Router>
+          </Routes>
           )}
         </div>
       </div>
