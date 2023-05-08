@@ -24,6 +24,8 @@ Team Members:
 Github Link to the Original Project (Starter Kit):
 https://github.com/dappuniversity/starter_kit_2
 
+Github Link to Final Project:
+https://github.com/harshbodgal/cpsc-559-01-nft
 
 Features and Functionalities -
 
@@ -42,7 +44,7 @@ Features and Functionalities -
 10) Written tests for the contracts
 
 
-Dependencies -
+How to run -
 
 
 1) Node.js - https://www.nodejs.org/en - v17.0.1
