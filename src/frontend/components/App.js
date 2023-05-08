@@ -53,7 +53,7 @@ function App() {
               </div>
           ) : (
           <Routes>                    
-            <Route path="/Frontpage" element={
+            <Route path="/" element={
               <Frontpage market={market} nft={nft} />
             } />
             <Route path="/Sell" />
