@@ -1,48 +1,69 @@
-
-import logo from './logo.png';
 import './App.css';
+import React from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Routes
+} from "react-router-dom";
+import { BrowserRouter as Router} from 'react-router-dom';
+import { FadeLoader } from 'react-spinners'
+import Menu from './Menubar'
+import Frontpage from './Frontpage';
+import Sell from './Sell';
+import Items from './My-items.js';
+import Purchases from './Purchases';
+import MarketplaceAbi from '../contractsData/Marketplace.json'
+import MarketplaceAddress from '../contractsData/Marketplace-address.json'
+import NFTAbi from '../contractsData/NFT.json'
+import NFTAddress from '../contractsData/NFT-address.json'
+
+import { useState } from 'react'
+import { ethers } from 'ethers'
  
 function App() {
+  const [wallet, setWallet] = useState(null)
+  const [display, setDisplay] = useState(true)
+  const [nft, setNFT] = useState({})
+  const [market, setMarket] = useState({})
+
+  const web3Handler = async () => {
+    const wallet = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    setWallet(wallet[0])
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const sign = provider.getSigner()
+    load(sign)
+  
+  }
+
+  const load = async (sign) => {
+    setMarket(new ethers.Contract(MarketplaceAddress.address, MarketplaceAbi.abi, sign))
+    setNFT(new ethers.Contract(NFTAddress.address, NFTAbi.abi, sign))
+    setDisplay(false)
+  }
+
   return (
-    <div>
-      <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a
-          className="navbar-brand col-sm-3 col-md-2 ms-3"
-          href="http://www.dappuniversity.com/bootcamp"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Dapp University
-        </a>
-      </nav>
-      <div className="container-fluid mt-5">
-        <div className="row">
-          <main role="main" className="col-lg-12 d-flex text-center">
-            <div className="content mx-auto mt-5">
-              <a
-                href="http://www.dappuniversity.com/bootcamp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={logo} className="App-logo" alt="logo"/>
-              </a>
-              <h1 className= "mt-5">Dapp University Starter Kit</h1>
-              <p>
-                Edit <code>src/frontend/components/App.js</code> and save to reload.
-              </p>
-              <a
-                className="App-link"
-                href="http://www.dappuniversity.com/bootcamp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LEARN BLOCKCHAIN <u><b>NOW! </b></u>
-              </a>
-            </div>
-          </main>
+    <BrowserRouter>
+      <div>
+        <Menu web3Handler={web3Handler} wallet={wallet} />
+        <div>
+          {display ? (
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '75vh' }}>
+                <FadeLoader loading={true} color='blue' />
+                <p className='waiting'>Metamask Connecting...</p>
+              </div>
+          ) : (
+          <Routes>                    
+            <Route path="/Frontpage" element={
+              <Frontpage market={market} nft={nft} />
+            } />
+            <Route path="/Sell" />
+            <Route path="/My-items" />
+            <Route path="/Purchases"/>         
+          </Routes>
+          )}
         </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
