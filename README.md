@@ -38,11 +38,12 @@ Features and Functionalities -
 5) List of purchased NFTs
 6) List of NFTs listed for sell by the user
 7) List of latest Sports updates
-8) Deployed 2 contracts on Hardhat
-   1) NFT - reperesents collection of NFTs
+8) Share purchased NFTs on Twitter
+9) Like NFTs listed on Marketplace
+10) Deployed 2 contracts on Hardhat
+   1) NFT - reperesents collection of NFTs and like functionality
    2) Marketplace - allows users to buy and sell them
-9)Improved UI and created 6pages to enhance functionalities
-10) Written tests for the contracts
+11)Improved UI and created 6pages to enhance functionalities
 
 
 How to run -
